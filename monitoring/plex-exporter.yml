@@ -1,0 +1,19 @@
+services:
+  plex-exporter:
+    image: djmaze/plex_exporter:latest
+    container_name: plex-exporter
+    restart: unless-stopped
+    environment:
+      - PLEX_TOKEN=${PLEX_TOKEN}
+      - PLEX_URL=http://plex:32400
+    ports:
+      - "9594:9594"
+    networks:
+      - plex_monitoring_default
+      - dansproxy   # if your Plex lives on this network
+
+networks:
+  plex_monitoring_default:
+    external: true
+  dansproxy:
+    external: true

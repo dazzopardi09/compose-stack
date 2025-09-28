@@ -1,0 +1,15 @@
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - /mnt/user/appdata/grafana:/var/lib/grafana
+    networks:
+      - plex_monitoring_default
+
+networks:
+  plex_monitoring_default:
+    external: true

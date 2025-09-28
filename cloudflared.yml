@@ -1,0 +1,14 @@
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    user: "65532:65532"
+    working_dir: /home/nonroot
+    command: ["tunnel", "--no-autoupdate", "run", "--token", "${CLOUDFLARED_TOKEN}"]
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true

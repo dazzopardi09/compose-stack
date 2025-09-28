@@ -1,0 +1,17 @@
+services:
+  flaresolverr:
+    image: flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    restart: unless-stopped
+    ports:
+      - "8191:8191"
+    # optional tuning:
+    # environment:
+    #   - LOG_LEVEL=info
+    #   - CAPTCHA_SOLVER=none
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true

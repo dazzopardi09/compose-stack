@@ -1,0 +1,15 @@
+services:
+  intel-gpu-exporter:
+    image: ghcr.io/utkuozdemir/intel-gpu-exporter:latest
+    container_name: intel-gpu-exporter
+    restart: unless-stopped
+    devices:
+      - /dev/dri:/dev/dri
+    ports:
+      - "8081:8080"   # host:container, adjust host port if needed
+    networks:
+      - plex_monitoring_default
+
+networks:
+  plex_monitoring_default:
+    external: true

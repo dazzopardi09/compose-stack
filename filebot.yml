@@ -1,0 +1,18 @@
+services:
+  filebot:
+    image: rednoah/filebot:latest
+    container_name: filebot
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - /mnt/user/appdata/filebot:/config
+      - /mnt/user/data:/data
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true

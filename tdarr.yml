@@ -1,0 +1,24 @@
+services:
+  tdarr:
+    image: ghcr.io/haveagitgat/tdarr:latest
+    container_name: tdarr
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK=${UMASK}
+    volumes:
+      - /mnt/user/appdata/tdarr:/app/configs
+      - /mnt/user/appdata/tdarr/server:/app/server
+      - /mnt/user/appdata/tdarr/configs:/app/configs
+      - /mnt/user/data:/data
+    ports:
+      - "8265:8265"   # WebUI
+      - "8266:8266"   # Node port
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true

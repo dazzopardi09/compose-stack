@@ -1,0 +1,24 @@
+services:
+  radarr:
+    image: ghcr.io/hotio/radarr:latest
+    container_name: radarr
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK=002
+      # Optional: VPN settings if you actually use them
+      # - VPN_ENABLED=false
+      # - VPN_PROVIDER=generic
+    volumes:
+      - /mnt/user/appdata/radarr:/config
+      - /mnt/user/data:/data
+    ports:
+      - "7878:7878"
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true

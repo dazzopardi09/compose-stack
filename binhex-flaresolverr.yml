@@ -1,0 +1,17 @@
+services:
+  flaresolverr:
+    image: binhex/arch-flaresolverr:latest
+    container_name: binhex-flaresolverr
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    ports:
+      - "8191:8191"
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true

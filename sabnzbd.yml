@@ -1,0 +1,21 @@
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK=${UMASK}
+    volumes:
+      - /mnt/user/appdata/sabnzbd:/config
+      - /mnt/user/data/usenet:/downloads
+    ports:
+      - "8070:8080"        # host:container (your current WebUI)
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true

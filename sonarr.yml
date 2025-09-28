@@ -1,0 +1,21 @@
+services:
+  sonarr:
+    image: ghcr.io/hotio/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK=${UMASK}
+    volumes:
+      - /mnt/user/appdata/sonarr:/config
+      - /mnt/user/data:/data
+    ports:
+      - "8989:8989"
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true

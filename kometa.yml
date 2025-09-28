@@ -1,0 +1,16 @@
+services:
+  kometa:
+    image: kometateam/kometa:latest
+    container_name: kometa
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - /mnt/user/appdata/kometa:/config
+      - /mnt/user/data:/data
+    networks:
+      - dansproxy
+
+networks:
+  dansproxy:
+    external: true
