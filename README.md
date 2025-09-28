@@ -58,10 +58,7 @@ A helper script `compose-up.sh` is included to simplify usage.
 ```
 
 ## Environment Variables
-Secrets and common variables are centralized in the `.env` file.
-
-- **Do not commit `.env` to GitHub** — it contains your real tokens and API keys.
-- Instead, commit the included `.env.example` file, which contains placeholders.
+Secrets and common variables are centralized in the `.env` file. You will need to cfreate your own with your own variables. I've uploaded .env.example with placeholders to get you started.
 
 ### First-time setup
 Copy the example file to `.env`:
